@@ -35,6 +35,49 @@
         object-fit: cover;
     }
 
+    &__damage {
+        display: block;
+        position: absolute;
+        bottom: -0.8em;
+        left: 0.4em;
+        background-color: $gray-700;
+        display: grid;
+        column-gap: 1em;
+        grid-auto-flow: column;
+        padding: 0.2em;
+        border-radius: 0.2em;
+        &::before {
+            color: $gray-000;
+            content: "ダメージ";
+        }
+    }
+
+    &__damage-circle {
+        &--true {
+            display: block;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            border: 0.3em solid $gray-500;
+            background-color: $gray-900;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &--false {
+            display: block;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            border: 0.3em solid $gray-500;
+            background-color: $gray-100;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
     &__container {
         display: flex;
         flex-direction: column;

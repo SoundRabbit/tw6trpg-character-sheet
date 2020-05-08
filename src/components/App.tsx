@@ -122,6 +122,11 @@ export class App extends React.Component<Props, State> {
                             className="character__img"
                             src="https://cdn.tw6.jp/i/tw6/basic/1185/1000834_f11857_bu.png"
                         />
+                        <div className="character__damage">
+                            <span className={`character__damage-circle--${this.state.character.damage > 0}`} />
+                            <span className={`character__damage-circle--${this.state.character.damage > 1}`} />
+                            <span className={`character__damage-circle--${this.state.character.damage > 2}`} />
+                        </div>
                     </div>
                     <div className="character__ubel-code-list">
                         {(() =>
