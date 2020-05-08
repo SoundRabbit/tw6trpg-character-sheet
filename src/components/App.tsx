@@ -69,6 +69,26 @@ export class App extends React.Component<Props, State> {
         });
     }
 
+    addItem() {
+        this.state.character.items.push({
+            name: "アイテム名",
+            level: 1
+        });
+        this.setState({
+            character: Object.assign({}, this.state.character)
+        });
+    }
+
+    addSkill() {
+        this.state.character.skills.push({
+            name: "技能名",
+            level: 1
+        });
+        this.setState({
+            character: Object.assign({}, this.state.character)
+        });
+    }
+
     render(): JSX.Element | null {
         return (
             <div className="app">
@@ -113,27 +133,29 @@ export class App extends React.Component<Props, State> {
                                 </div>
                             )
                         )()}
-                        <button className="character__list-btn" onClick={() => this.addUbelCode()}>ユーベルコードを追加</button>
+                        <button className="character__list-btn" onClick={() => this.addUbelCode()}>+</button>
                     </div>
                     <div className="character__item-list">
                         {(() =>
                             this.state.character.items.map(item =>
                                 <div className="item">
-                                    <input className="item__name" value={item.name} />
-                                    <input className="item__level" value={item.level} />
+                                    <div className="item__name" contentEditable="true">{item.name}</div>
+                                    <div className="item__level" contentEditable="true">{item.level}</div>
                                 </div>
                             )
                         )()}
+                        <button className="character__list-btn" onClick={() => this.addItem()}>+</button>
                     </div>
                     <div className="character__skill-list">
                         {(() =>
                             this.state.character.skills.map(skill =>
                                 <div className="skill">
-                                    <input className="skill__name" value={skill.name} />
-                                    <input className="skill_level" value={skill.level} />
+                                    <div className="skill__name" contentEditable="true">{skill.name}</div>
+                                    <div className="skill__level" contentEditable="true">{skill.level}</div>
                                 </div>
                             )
                         )()}
+                        <button className="character__list-btn" onClick={() => this.addSkill()}>+</button>
                     </div>
                 </div>
             </div >

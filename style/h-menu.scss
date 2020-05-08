@@ -7,9 +7,25 @@
     grid-auto-rows: max-content;
     grid-auto-flow: column;
     column-gap: 1ch;
+    font-size: 1.9vw;
     &__btn {
         @extend %btn;
         background-color: $gray-500;
         color: $gray-000;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-width: 1280px) {
+    .h-menu {
+        width: 1280px;
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media print {
+    .h-menu {
+        display: none;
     }
 }
