@@ -53,10 +53,10 @@ export class App extends React.Component<Props, State> {
                 exp: 0,
                 description: "",
                 ubelCodes: [{
-                    name: "",
-                    aria: "",
-                    customTexts: [],
-                    description: "",
+                    name: "絶望の福音",
+                    aria: "詠唱内容",
+                    customTexts: ["まるで10秒先の未来を見てきたかのように"],
+                    description: "【1】対称の攻撃を予想し、回避する。",
                 }],
                 items: [],
                 skills: [],
@@ -102,20 +102,12 @@ export class App extends React.Component<Props, State> {
                         {(() =>
                             this.state.character.ubelCodes.map(ubelCode =>
                                 <div className="ubel-code">
-                                    <div className="ubel-code__name" contentEditable="true">{ubelCode.name}</div>
-                                    <div className="ubel-code__aria" contentEditable="true">{ubelCode.aria}</div>
-                                    <div className="ubel-code__custom-text-list">
-                                        {(() =>
-                                            ubelCode.customTexts.map((customText, idx) =>
-                                                <div className="ubel-code__custom-text" contentEditable="true" data-idx={idx}>{customText}</div>
-                                            )
-                                        )()}
-                                    </div>
-                                    <div className="ubel-code__description" contentEditable="true">{ubelCode.description}</div>
+                                    <div className="ubel-code__name">{ubelCode.name}</div>
+                                    <div className="ubel-code__aria">{ubelCode.aria}</div>
                                     <div className="ubel-code__description" >
                                         {ubelCode.customTexts.reduce(
                                             (description, customText, customTextIdx) =>
-                                                description.replace(new RegExp(`【${customTextIdx}】`, "g"), `【${customText}】`),
+                                                description.replace(new RegExp(`【${customTextIdx + 1}】`, "g"), `【${customText}】`),
                                             ubelCode.description
                                         )}
                                     </div>

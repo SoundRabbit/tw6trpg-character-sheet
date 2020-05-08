@@ -1,1 +1,40 @@
 @import "color";
+
+.ubel-code {
+    background-color: $gray-100;
+    padding: 0.5em;
+
+    &__name {
+        color: $gray-900;
+        border-bottom: 0.1em solid $gray-900;
+    }
+
+    &__aria {
+        font-size: 0.8em;
+        &::before {
+            content: "『";
+        }
+        &::after {
+            content: "』";
+        }
+    }
+
+    &__custom-text-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__custom-text {
+        font-size: 0.8em;
+        &::before {
+            content: "【";
+        }
+        &::after {
+            content: "】";
+        }
+    }
+
+    &__description {
+        font-size: 0.8em;
+    }
+}

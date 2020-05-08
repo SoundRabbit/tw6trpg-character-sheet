@@ -12,6 +12,7 @@
     grid-auto-rows: min-content;
     grid-auto-flow: row;
     column-gap: 1em;
+    row-gap: 2em;
 
     &__img-container {
         position: relative;
@@ -39,6 +40,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        border-bottom: 0.1em solid $gray-900;
     }
 
     &__name-container {
@@ -73,6 +75,23 @@
     
     &__ubel-code-list {
         grid-column: 1 / -1;
+        display: grid;
+        grid-auto-columns: 15em;
+        padding: 1em;
+        padding-top: 2.6em;
+        position: relative;
+        box-sizing: border-box;
+        border: 0.1em solid $gray-900;
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding-left: 1em;
+            color: $gray-000;
+            background-color: $gray-900;
+            content: "ユーベルコード";
+        }
     }
 
     &__item-list {
