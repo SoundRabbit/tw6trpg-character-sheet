@@ -15,6 +15,7 @@ type Character = {
     subJob: string;
     damage: number;
     exp: number;
+    img: string;
     description: string;
     ubelCodes: UbelCode[];
     items: Item[];
@@ -48,6 +49,7 @@ export class App extends React.Component<Props, State> {
                 race: "種族",
                 mainJob: "メインジョブ",
                 subJob: "サブジョブ",
+                img: "",
                 damage: 0,
                 exp: 0,
                 description: "",
@@ -120,7 +122,7 @@ export class App extends React.Component<Props, State> {
                     <div className="character__img-container">
                         <img
                             className="character__img"
-                            src="https://cdn.tw6.jp/i/tw6/basic/1185/1000834_f11857_bu.png"
+                            src={this.state.character.img}
                         />
                         <div className="character__damage">
                             <span className={`character__damage-circle--${this.state.character.damage > 0}`} />
