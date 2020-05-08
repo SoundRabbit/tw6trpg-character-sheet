@@ -91,6 +91,13 @@ export class App extends React.Component<Props, State> {
         });
     }
 
+    setDamage(damage: number) {
+        this.state.character.damage = damage;
+        this.setState({
+            character: Object.assign({}, this.state.character)
+        });
+    }
+
     render(): JSX.Element | null {
         return (
             <div className="app">
@@ -125,9 +132,36 @@ export class App extends React.Component<Props, State> {
                             src={this.state.character.img}
                         />
                         <div className="character__damage">
-                            <span className={`character__damage-circle--${this.state.character.damage > 0}`} />
-                            <span className={`character__damage-circle--${this.state.character.damage > 1}`} />
-                            <span className={`character__damage-circle--${this.state.character.damage > 2}`} />
+                            <span
+                                className={`character__damage-circle--${this.state.character.damage > 0}`}
+                                onClick={() => {
+                                    if (this.state.character.damage > 0) {
+                                        this.setDamage(0);
+                                    } else {
+                                        this.setDamage(1);
+                                    }
+                                }}
+                            />
+                            <span
+                                className={`character__damage-circle--${this.state.character.damage > 1}`}
+                                onClick={() => {
+                                    if (this.state.character.damage > 1) {
+                                        this.setDamage(1);
+                                    } else {
+                                        this.setDamage(2);
+                                    }
+                                }}
+                            />
+                            <span
+                                className={`character__damage-circle--${this.state.character.damage > 2}`}
+                                onClick={() => {
+                                    if (this.state.character.damage > 2) {
+                                        this.setDamage(2);
+                                    } else {
+                                        this.setDamage(3);
+                                    }
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="character__ubel-code-list">
