@@ -127,10 +127,10 @@ export class App extends React.Component<Props, State> {
                     </div>
                     <div className="character__skill-list">
                         {(() =>
-                            this.state.character.skills.map(item =>
-                                <div className="item">
-                                    <input className="item__name" value={item.name} />
-                                    <input className="item__level" value={item.level} />
+                            this.state.character.skills.map(skill =>
+                                <div className="skill">
+                                    <input className="skill__name" value={skill.name} />
+                                    <input className="skill_level" value={skill.level} />
                                 </div>
                             )
                         )()}
