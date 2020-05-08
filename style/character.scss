@@ -1,0 +1,85 @@
+@import "color";
+
+.character {
+    width: 100vw;
+    height: 141vw;
+    font-size: 1.9vw;
+    padding: 4em;
+    box-sizing: border-box;
+    line-height: 1.6;
+    display: grid;
+    grid-template-columns: 8fr 5fr;
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+    column-gap: 1em;
+
+    &__img-container {
+        position: relative;
+        width: 100%;
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 133%;
+        }
+    }
+
+    &__img {
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border: 0.2em solid $gray-900;
+        object-fit: cover;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__name-container {
+        display: grid;
+        grid-auto-rows: max-content;
+        justify-content: center;
+        justify-items: left;
+    }
+
+    &__title {
+        font-size: 0.8em;
+    }
+
+    &__name {
+        font-size: 1.2em;
+    }
+
+    &__catchphrase {
+        align-self: center;
+        &::before {
+            content: "『";
+        }
+        &::after {
+            content: "』";
+        }
+    }
+
+    &__description {
+        height: calc(1.6em * 8);
+        overflow-y: scroll;
+    }
+    
+    &__ubel-code-list {
+        grid-column: 1 / -1;
+    }
+
+    &__item-list {
+        grid-column: 1 / -1;
+    }
+
+    &__skill-list {
+        grid-column: 1 / -1;
+    }
+}

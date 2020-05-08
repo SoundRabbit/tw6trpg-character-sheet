@@ -1,0 +1,15 @@
+@import "btn";
+@import "color";
+
+.h-menu {
+    display: grid;
+    grid-auto-columns: max-content;
+    grid-auto-rows: max-content;
+    grid-auto-flow: column;
+    column-gap: 1ch;
+    &__btn {
+        @extend %btn;
+        background-color: $gray-500;
+        color: $gray-000;
+    }
+}
