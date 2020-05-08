@@ -2,7 +2,7 @@
 
 .character {
     width: 100vw;
-    height: 141vw;
+    min-height: 141vw;
     font-size: 1.9vw;
     padding: 4em;
     box-sizing: border-box;
@@ -71,17 +71,19 @@
     &__description {
         height: calc(1.6em * 8);
         overflow-y: scroll;
+        border: 0.1em solid $gray-900;
     }
     
     &__ubel-code-list {
         grid-column: 1 / -1;
         display: grid;
-        grid-auto-columns: 15em;
+        grid-template-columns: 13em 13em 13em;
         padding: 1em;
         padding-top: 2.6em;
         position: relative;
         box-sizing: border-box;
         border: 0.1em solid $gray-900;
+        justify-content: space-between;
         &::before {
             position: absolute;
             top: 0;
@@ -97,12 +99,13 @@
     &__item-list {
         grid-column: 1 / -1;
         display: grid;
-        grid-auto-columns: 15em;
+        grid-template-columns: 13em 13em 13em;
         padding: 1em;
         padding-top: 2.6em;
         position: relative;
         box-sizing: border-box;
         border: 0.1em solid $gray-900;
+        grid-auto-flow: column;
         &::before {
             position: absolute;
             top: 0;
@@ -118,12 +121,13 @@
     &__skill-list {
         grid-column: 1 / -1;
         display: grid;
-        grid-auto-columns: 15em;
+        grid-template-columns: 13em 13em 13em;
         padding: 1em;
         padding-top: 2.6em;
         position: relative;
         box-sizing: border-box;
         border: 0.1em solid $gray-900;
+        grid-auto-flow: column;
         &::before {
             position: absolute;
             top: 0;
@@ -133,6 +137,19 @@
             color: $gray-000;
             background-color: $gray-900;
             content: "スキル";
+        }
+    }
+
+    &__list-btn {
+        align-self: center;
+        justify-self: center;
+        border-radius: 0.5em;
+        background-color: $gray-900;
+        color: $gray-000;
+        outline: none;
+        font-size: 1em;
+        &:hover {
+            cursor: pointer;
         }
     }
 }

@@ -24,7 +24,6 @@ type Character = {
 type UbelCode = {
     name: string,
     aria: string,
-    customTexts: string[],
     description: string,
 }
 
@@ -52,16 +51,22 @@ export class App extends React.Component<Props, State> {
                 damage: 0,
                 exp: 0,
                 description: "",
-                ubelCodes: [{
-                    name: "絶望の福音",
-                    aria: "詠唱内容",
-                    customTexts: ["まるで10秒先の未来を見てきたかのように"],
-                    description: "【1】対称の攻撃を予想し、回避する。",
-                }],
+                ubelCodes: [],
                 items: [],
                 skills: [],
             }
         }
+    }
+
+    addUbelCode() {
+        this.state.character.ubelCodes.push({
+            name: "ユーベルコード名",
+            aria: "詠唱内容",
+            description: "説明"
+        });
+        this.setState({
+            character: Object.assign({}, this.state.character)
+        });
     }
 
     render(): JSX.Element | null {
@@ -102,18 +107,13 @@ export class App extends React.Component<Props, State> {
                         {(() =>
                             this.state.character.ubelCodes.map(ubelCode =>
                                 <div className="ubel-code">
-                                    <div className="ubel-code__name">{ubelCode.name}</div>
-                                    <div className="ubel-code__aria">{ubelCode.aria}</div>
-                                    <div className="ubel-code__description" >
-                                        {ubelCode.customTexts.reduce(
-                                            (description, customText, customTextIdx) =>
-                                                description.replace(new RegExp(`【${customTextIdx + 1}】`, "g"), `【${customText}】`),
-                                            ubelCode.description
-                                        )}
-                                    </div>
+                                    <div className="ubel-code__name" contentEditable="true">{ubelCode.name}</div>
+                                    <div className="ubel-code__aria" contentEditable="true">{ubelCode.aria}</div>
+                                    <div className="ubel-code__description" contentEditable="true">{ubelCode.description}</div>
                                 </div>
                             )
                         )()}
+                        <button className="character__list-btn" onClick={() => this.addUbelCode()}>ユーベルコードを追加</button>
                     </div>
                     <div className="character__item-list">
                         {(() =>
