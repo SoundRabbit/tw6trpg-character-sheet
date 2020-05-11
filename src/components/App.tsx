@@ -466,7 +466,7 @@ export class App extends React.Component<Props, State> {
                                             value={item.name}
                                             placeholder="アイテム名"
                                             as="textarea"
-                                            onInput={str => this.setSkillName(idx, str)}
+                                            onInput={str => this.setItemName(idx, str)}
                                         />
                                     </div>
                                     <div className="item__level">
@@ -477,7 +477,7 @@ export class App extends React.Component<Props, State> {
                                             onInput={str => {
                                                 const level = Number(str);
                                                 if (!isNaN(level)) {
-                                                    this.setSkillLevel(idx, level)
+                                                    this.setItemLevel(idx, level)
                                                 }
                                             }}
                                         />
@@ -496,7 +496,7 @@ export class App extends React.Component<Props, State> {
                                             value={skill.name}
                                             placeholder="スキル名"
                                             as="textarea"
-                                            onInput={str => this.setItemName(idx, str)}
+                                            onInput={str => this.setSkillName(idx, str)}
                                         />
                                     </div>
                                     <div className="skill__level">
@@ -507,7 +507,7 @@ export class App extends React.Component<Props, State> {
                                             onInput={str => {
                                                 const level = Number(str);
                                                 if (!isNaN(level)) {
-                                                    this.setItemLevel(idx, level)
+                                                    this.setSkillLevel(idx, level)
                                                 }
                                             }}
                                         />
