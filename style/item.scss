@@ -11,7 +11,9 @@
 
     &__level {
         font-size: 0.8em;
+        display: flex;
         &::before {
+            min-width: max-content;
             content: "レベル：";
         }
     }

@@ -1,0 +1,42 @@
+@import "color";
+
+.input {
+    font: inherit;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    
+    &__background {
+        opacity: 0;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        line-height: inherit;
+        display: inline-block;
+        font: inherit;
+        font-kerning: inherit;
+        overflow-wrap: inherit;
+    }
+
+    &__foreground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        resize: none;
+        line-height: inherit;
+        background-color: transparent;
+        display: inline-block;
+        font: inherit;
+        font-kerning: inherit;
+        overflow-wrap: inherit;
+    }
+}
