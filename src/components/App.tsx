@@ -1,5 +1,7 @@
 import * as React from "react"
 
+import * as Decoder from "Decoder"
+
 import { Input } from "./Input"
 
 type Props = {}
@@ -39,6 +41,38 @@ type Skill = {
     name: string,
     level: number,
 }
+
+const ubelCodeDecoder: Decoder.Decoder<UbelCode> = Decoder.object({
+    name: Decoder.string,
+    aria: Decoder.string,
+    description: Decoder.string,
+});
+
+const itemDecoder: Decoder.Decoder<Item> = Decoder.object({
+    name: Decoder.string,
+    level: Decoder.number
+});
+
+const skillDecoder: Decoder.Decoder<Skill> = Decoder.object({
+    name: Decoder.string,
+    level: Decoder.number
+});
+
+const characterDecoder: Decoder.Decoder<Character> = Decoder.object({
+    name: Decoder.string,
+    title: Decoder.string,
+    catchphrase: Decoder.string,
+    race: Decoder.string,
+    mainJob: Decoder.string,
+    subJob: Decoder.string,
+    damage: Decoder.number,
+    exp: Decoder.number,
+    img: Decoder.string,
+    description: Decoder.string,
+    ubelCodes: Decoder.array(ubelCodeDecoder),
+    items: Decoder.array(itemDecoder),
+    skills: Decoder.array(skillDecoder)
+});
 
 export class App extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -223,13 +257,53 @@ export class App extends React.Component<Props, State> {
         dummyElement.click();
     }
 
+    saveToLocal() {
+        const dummyElement = document.createElement("a");
+        dummyElement.href = "data:text/plain," + encodeURIComponent(JSON.stringify(this.state.character));
+        dummyElement.download = this.state.character.name + ".json";
+        dummyElement.style.display = "none";
+        dummyElement.click();
+        document.appendChild(dummyElement);
+        dummyElement.click();
+        document.removeChild(dummyElement);
+    }
+
+    loadFromLocal() {
+        const dummyElement = document.createElement("input");
+        dummyElement.type = "file";
+        dummyElement.accept = ".json, text/plain";
+        dummyElement.onchange = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            if (!target.files) { return; }
+
+            const file = target.files[0];
+
+            const fileReader = new FileReader();
+            fileReader.onload = () => {
+                const result = fileReader.result;
+                if (typeof result == "string") {
+                    try {
+                        this.setState({
+                            character: characterDecoder(JSON.parse(result))
+                        });
+                    } catch (err) {
+                        console.log(err);
+                        alert("ファイルの読み込みに失敗しました。");
+                    }
+                }
+            }
+            fileReader.readAsText(file);
+        }
+        dummyElement.click();
+    }
+
     render(): JSX.Element | null {
         return (
             <div className="app">
                 <div className="app__menu">
                     <div className="h-menu">
-                        <button className="h-menu__btn">ファイルとして保存</button>
-                        <button className="h-menu__btn">ファイルから読み込み</button>
+                        <button className="h-menu__btn" onClick={() => this.saveToLocal()}>ファイルとして保存</button>
+                        <button className="h-menu__btn" onClick={() => this.loadFromLocal()}>ファイルから読み込み</button>
                     </div>
                 </div>
                 <div className="character">
