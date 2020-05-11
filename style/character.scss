@@ -12,6 +12,7 @@
     grid-auto-flow: row;
     column-gap: 1em;
     row-gap: 2em;
+    background-color: white;
 
     &__img-container {
         position: relative;
@@ -213,14 +214,13 @@
     .character {
         width: 1280px;
         font-size: 24px;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 
 @media print {
     .character {
         font-size: 1.9vw;
+        background-color: transparent;
         &__list-btn {
             display: none;
         }

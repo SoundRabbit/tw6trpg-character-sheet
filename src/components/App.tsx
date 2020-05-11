@@ -1,4 +1,5 @@
 import * as React from "react"
+import htmlToImage from 'html-to-image';
 
 import * as Decoder from "Decoder"
 
@@ -263,9 +264,6 @@ export class App extends React.Component<Props, State> {
         dummyElement.download = this.state.character.name + ".json";
         dummyElement.style.display = "none";
         dummyElement.click();
-        document.appendChild(dummyElement);
-        dummyElement.click();
-        document.removeChild(dummyElement);
     }
 
     loadFromLocal() {
@@ -297,6 +295,18 @@ export class App extends React.Component<Props, State> {
         dummyElement.click();
     }
 
+    async writeoutToLocalAsImage() {
+        const characterSheet = document.getElementById("character-sheet");
+        if (characterSheet) {
+            const img = await htmlToImage.toBlob(characterSheet);
+            const dummyElement = document.createElement("a");
+            dummyElement.href = window.URL.createObjectURL(img);
+            dummyElement.target = "_blank";
+            dummyElement.style.display = "none";
+            dummyElement.click();
+        }
+    }
+
     render(): JSX.Element | null {
         return (
             <div className="app">
@@ -304,9 +314,10 @@ export class App extends React.Component<Props, State> {
                     <div className="h-menu">
                         <button className="h-menu__btn" onClick={() => this.saveToLocal()}>ファイルとして保存</button>
                         <button className="h-menu__btn" onClick={() => this.loadFromLocal()}>ファイルから読み込み</button>
+                        <button className="h-menu__btn" onClick={() => this.writeoutToLocalAsImage()}>画像として書き出し</button>
                     </div>
                 </div>
-                <div className="character">
+                <div className="character" id="character-sheet">
                     <div className="character__container">
                         <div className="character__container">
                             <div className="character__name-container">
